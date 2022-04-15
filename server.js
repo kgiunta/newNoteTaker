@@ -9,11 +9,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => res.send("Navigate to /notes"));
+// app.get("/", (req, res) => res.send("Navigate to /notes"));
 app.get("/api/notes", (req, res) => {
   // Log our request to the terminal
   console.info(`${req.method} request received to get notes`);
 
+  //   res.send("hello");
   // Sending all notes to the client
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
@@ -21,6 +22,7 @@ app.get("/api/notes", (req, res) => {
     }
     console.log(data);
     data = JSON.parse(data);
+    console.log({ data });
     res.json(data);
   });
 });
@@ -80,11 +82,11 @@ app.post("/api/notes", (req, res) => {
 
 app.get("/notes", (req, res) => {
   console.log(__dirname);
-  res.sendFile(path.join(__dirname, "public/notes.html"));
+  res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 app.get("*", (req, res) => {
   console.log(__dirname);
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.listen(PORT, () =>
