@@ -14,7 +14,6 @@ app.get("/api/notes", (req, res) => {
   // Log our request to the terminal
   console.info(`${req.method} request received to get notes`);
 
-  //   res.send("hello");
   // Sending all notes to the client
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
@@ -29,9 +28,9 @@ app.get("/api/notes", (req, res) => {
 
 app.post("/api/notes", (req, res) => {
   // Inform the client that their POST request was received
-  res.json(`${req.method} request received to add a note`);
+  res.json(`${req.method} request  to add a note received`);
   // Log our request to the terminal
-  console.info(`${req.method} request received to add a note`);
+  console.info(`${req.method} request to add a note received`);
 
   // Destructuring assignment for the items in req.body
   const { title, text } = req.body;
@@ -75,8 +74,6 @@ app.post("/api/notes", (req, res) => {
 
     console.log(response);
     res.status(201).json(response);
-  } else {
-    res.status(500).json("Error in posting note");
   }
 });
 
