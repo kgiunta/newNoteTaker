@@ -1,35 +1,27 @@
 const router = require("express").Router();
+const noteData = require("../db/db.json");
+const fs = require("fs");
+const { title } = require("process");
+const util = require("util");
 
-app.get("/api/notes", (req, res) => {
-  // Log our request to the terminal
+const readFileAsync = util.promisify(fs.readFile);
 
-  fs.readFile("./db/db.json", "utf8", (err, data) => {
-    if (err) {
-      throw err;
-    }
-    console.log(data);
-    data = JSON.parse(data);
-    res.json(data);
-  });
+// '/api/notes/
+router.get("/notes", async (req, res) => {
+  const notesData = await readFileAsync("db/db.json", "utf8");
+  console.log(typeof notesData);
+  res.json(JSON.parse(noteData));
 });
 
-app.post("/api/notes", (req, res) => {
-  // Inform the client that their POST request was received
-  res.json(`${req.method} request received to add a note`);
-  // Log our request to the terminal
-  console.info(`${req.method} request received to add a note`);
+router.post("/notes", async (req, res) => {
+  const reqBody = ({ title, text } = req.body);
+});
 
-  // Destructuring assignment for the items in req.body
-  const { title, text } = req.body;
-
-  // If all the required properties are present
-  if (title && text) {
-    // Variable for the object we will save
-    const newNote = {
-      title,
-      text,
-      noteID: uuid(),
-    };
-  }
+router.delete("/notes/:id", (req, res) => {
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
 });
 module.exports = router;

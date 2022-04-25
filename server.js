@@ -41,7 +41,7 @@ app.post("/api/notes", (req, res) => {
     const newNote = {
       title,
       text,
-      noteID: uuid(),
+      id: uuid(),
     };
 
     // Obtain existing notes
