@@ -16,7 +16,7 @@ This deployed app can be found on Heroku: https://safe-hollows-67860.herokuapp.c
 
 MIT License
 
-Copyright (c) [2022] [Daniel Stephen Nelson]
+Copyright (c) [2022]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
